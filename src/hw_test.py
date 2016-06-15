@@ -31,9 +31,8 @@ class HW(RunTestBase):
         print ("Launching the HelloWorld server app")
         # Use cluster0 for launching the hw_server
         # field: slave_id, operator: CLUSTER, value: slave-set1_0
-        self.create_binary_app(name=self.hw_server_app_id, app_script='./src/hw_server.py',
-                              cpus=0.01, mem=32,
-                              ports=[0])
+        self.create_binary_app(name=self.hw_server_app_id, app_script='./src/hw_server.py', cpus=0.01, mem=32,
+                               ports=[0])
 
         ipm = self.get_app_ipport_map(self.hw_server_app_id)
         assert (len(ipm) == 1)

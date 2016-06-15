@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
-set -x
 set -e
 WorkDir=`pwd`
+echo "==> Setting WorkDir=$WorkDir"
+echo "==> Removing ${WorkDir}/venv_test"
 rm -rf ${WorkDir}/venv_test
+echo "==> Creating new virtual environment at ${WorkDir}/venv_test"
 virtualenv ${WorkDir}/venv_test
 source ${WorkDir}/venv_test/bin/activate
+echo "==> Installing Hydra"
 cd ${WorkDir}/hydra
 pip install pybuilder
 pyb install_dependencies

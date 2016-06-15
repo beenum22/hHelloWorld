@@ -1,4 +1,6 @@
 # HelloWorld
+   This is a tutorial that show how hydra can be used to develop test cases with many processes on many nodes 
+   interacting in client server type communication. 
 
 # Prerequisits
 

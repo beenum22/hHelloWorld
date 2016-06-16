@@ -1,13 +1,13 @@
 #!/usr/bin/env python
-from sys import path
 import zmq
 import os
 import logging
 
+from sys import path
+path.append("hydra/src/main/python")
 from hydra.lib import util
 from hydra.lib.hdaemon import HDaemonRepSrv
 
-path.append("hydra/src/main/python")
 l = util.createlogger('HWSrv', logging.INFO)
 
 

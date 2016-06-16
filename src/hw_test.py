@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 from sys import path
-
+path.append("hydra/src/main/python")
 from hydra.lib.runtestbase import RunTestBase
 from ConfigParser import ConfigParser
 from hydra.lib.h_analyser import HAnalyser
-path.append("hydra/src/main/python")
 tout_60s = 60000
 
 

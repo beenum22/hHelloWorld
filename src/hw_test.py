@@ -1,15 +1,24 @@
 #!/usr/bin/env python
+from sys import path
+path.append("hydra/src/main/python")
 
 import time
 
 from hydra.lib.runtestbase import RunTestBase
 from ConfigParser import ConfigParser
+from hydra.lib.h_analyser import HAnalyser
+
+tout_60s = 60000
+
+class HWSrvAnalyser(HAnalyser):
+    def __init__(self, server_ip, server_port, task_id):
+        HAnalyser.__init__(self, server_ip, server_port, task_id)
 
 
 class HW(RunTestBase):
     def __init__(self):
         self.config = ConfigParser()  # Object contains 'configurations' parsed from hydra.ini config file
-        RunTestBase.__init__(self, test_name='HelloWorld', options=None, app_dirs=['src'])
+        RunTestBase.__init__(self, test_name='HelloWorld', options=None, app_dirs=['src', 'target', 'hydra'])
         self.hw_server_app_id = self.format_appname("/hw-server")
         self.hw_client_app_id = self.format_appname("/hw-client")
         self.hw_server_task_ip = None
@@ -26,6 +35,24 @@ class HW(RunTestBase):
         self.launch_hw_server()
         # Launch HelloWorld client
         self.launch_hw_client()
+
+        # Cereate a HAnalyzer class with that IP/PORT/Taskid
+        hwsa = HWSrvAnalyser(self.hw_server_task_ip, self.hw_server_task_port, self.hw_server_app_id)
+        # Call a function "starttest" on the HAnalyzer class instance
+        hwsa.start_test()
+
+        # Call teststartfoo on HAnalyzer class instance
+        hwsa.do_req_resp('helloworld', tout_60s, arg1='AWSOME')
+
+        # Get the ip/port/taskid of hw_server
+        # Cereate a HAnalyzer class with that IP/PORT/Taskid
+        # Call a function "starttest" on the HAnalyzer class instance
+
+        # 2nd experiment
+        # on HAnlyzer class call test start foo
+        #
+        #(status, resp) = ha_instance.do_req_resp(cmd='teststartfoo', 1234, timeout=tout_60s)
+
 
     def launch_hw_server(self):
         print ("Launching the HelloWorld server app")
@@ -62,7 +89,6 @@ class RunTest(object):
         r = HW()
         r.start_appserver()
         r.run_test()
-        time.sleep(60)
         print ("Going to delete all launched apps")
         r.delete_all_launched_apps()
         r.stop_appserver()

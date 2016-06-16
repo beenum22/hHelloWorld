@@ -1,4 +1,4 @@
-# HelloWorld [![Build Status](https://travis-ci.org/lake-lerna/hydra.svg?branch=master)](https://travis-ci.org/tahir24434/HelloWorld)
+# HelloWorld [![Build Status](https://travis-ci.org/tahir24434/hHelloWorld.svg?branch=master)](https://travis-ci.org/tahir24434/HelloWorld)
 This is a tutorial that show how hydra can be used to develop test 
 cases with many processes on many nodes interacting in client server 
 type communication.

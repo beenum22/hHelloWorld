@@ -1,9 +1,8 @@
 #!/usr/bin/env python
-from sys import path
-path.append("hydra/src/main/python")
-
 import zmq
 import sys
+from sys import path
+path.append("hydra/src/main/python")
 
 
 def run(argv):

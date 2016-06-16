@@ -1,14 +1,12 @@
 #!/usr/bin/env python
 from sys import path
-path.append("hydra/src/main/python")
-
-import time
 
 from hydra.lib.runtestbase import RunTestBase
 from ConfigParser import ConfigParser
 from hydra.lib.h_analyser import HAnalyser
-
+path.append("hydra/src/main/python")
 tout_60s = 60000
+
 
 class HWSrvAnalyser(HAnalyser):
     def __init__(self, server_ip, server_port, task_id):
@@ -43,16 +41,6 @@ class HW(RunTestBase):
 
         # Call teststartfoo on HAnalyzer class instance
         hwsa.do_req_resp('helloworld', tout_60s, arg1='AWSOME')
-
-        # Get the ip/port/taskid of hw_server
-        # Cereate a HAnalyzer class with that IP/PORT/Taskid
-        # Call a function "starttest" on the HAnalyzer class instance
-
-        # 2nd experiment
-        # on HAnlyzer class call test start foo
-        #
-        #(status, resp) = ha_instance.do_req_resp(cmd='teststartfoo', 1234, timeout=tout_60s)
-
 
     def launch_hw_server(self):
         print ("Launching the HelloWorld server app")

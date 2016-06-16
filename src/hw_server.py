@@ -1,15 +1,14 @@
 #!/usr/bin/env python
 from sys import path
-path.append("hydra/src/main/python")
-
-import time
 import zmq
 import os
 import logging
-from hydra.lib import util
-l = util.createlogger('HWSrv', logging.INFO)
 
+from hydra.lib import util
 from hydra.lib.hdaemon import HDaemonRepSrv
+
+path.append("hydra/src/main/python")
+l = util.createlogger('HWSrv', logging.INFO)
 
 
 class HDHelloWorldSrv(HDaemonRepSrv):
@@ -23,11 +22,12 @@ class HDHelloWorldSrv(HDaemonRepSrv):
     def test_start(self):
         self.run_data['start'] = True
         self.run_data['test_status'] = 'running'
-        l.info ("I have started the test. Life is good :)")
+        l.info("I have started the test. Life is good :)")
         return 'ok', None
 
-    def test_helloworld(selfs, arg1):
-        l.info ("Hello World has been called with argument %s" % arg1)
+    @staticmethod
+    def test_helloworld(arg1):
+        l.info("Hello World has been called with argument %s" % arg1)
         return 'ok', None
 
     def test_status(self):
@@ -47,8 +47,6 @@ def run():
                 'test_status': 'stopped'}
     hd = HDHelloWorldSrv(server_rep_port, run_data)
     hd.run()
-
-
 
 if __name__ == "__main__":
     run()

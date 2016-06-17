@@ -2,4 +2,6 @@
 set -x
 set -e
 WorkDir=`pwd`
-${WorkDir}/src/hw_test.py
+publisher_port=$1
+num_msgs=$2
+${WorkDir}/src/hw_test.py ${publisher_port} ${num_msgs}
